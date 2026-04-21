@@ -1,15 +1,17 @@
 from tools.signal_harvester import tool_signal_harvester
 from tools.research_analyst import tool_research_analyst
 from tools.email_sender import tool_outreach_automated_sender
+from tools.email_finder import find_email_for_company
 
 def run_agent(icp: str, company: str, recipient_email: str) -> dict:
     """
-    Execute the full OutreachAI pipeline:
-    Signal Capture → Contextual Research → Automated Outreach
-    
-    Deterministic sequential pipeline:
-    tool_signal_harvester → tool_research_analyst → tool_outreach_automated_sender
+    Execute the full FireReach pipeline.
+    If recipient_email is empty, Hunter.io is used to auto-find one.
     """
+    # Auto-find email via Hunter if not provided
+    if not recipient_email or not recipient_email.strip():
+        found = find_email_for_company(company)
+        recipient_email = found or ""
     
     # Step 1: Harvest signals
     signals = tool_signal_harvester(company)

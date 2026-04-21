@@ -4,3 +4,4 @@ python-dotenv
 groq
 ddgs
 pydantic
+requests

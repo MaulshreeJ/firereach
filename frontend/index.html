@@ -421,8 +421,8 @@ body {
       <input type="text" id="company" placeholder="e.g., Stripe">
     </div>
     <div class="form-group">
-      <label for="email">💌 Recipient Email</label>
-      <input type="email" id="email" placeholder="e.g., cto@company.com">
+      <label for="email">💌 Recipient Email <span style="opacity:0.6;font-weight:600;font-size:9px;">(optional — auto-finds via Hunter)</span></label>
+      <input type="email" id="email" placeholder="Leave blank to auto-find~ ✨">
     </div>
     <button class="launch-btn" id="launch-btn">
       🚀 Launch Campaign ✨
@@ -623,9 +623,9 @@ launchBtn.addEventListener('click', async () => {
   const icp = document.getElementById('icp').value.trim();
   const company = document.getElementById('company').value.trim();
   const email = document.getElementById('email').value.trim();
-  if (!icp || !company || !email) {
+  if (!icp || !company) {
     const banner = document.getElementById('error-banner');
-    document.getElementById('error-message').textContent = 'Please fill in all fields before launching, bestie! 🌸';
+    document.getElementById('error-message').textContent = 'Please fill in ICP and Target Company, bestie! 🌸';
     banner.style.display = 'flex';
     return;
   }
@@ -655,7 +655,7 @@ launchBtn.addEventListener('click', async () => {
     const data = await res.json();
     document.getElementById('stat-signals').textContent = data.signals.length;
     document.getElementById('stat-status').textContent = data.status === 'sent' ? 'Sent 💌' : data.status === 'generated' ? 'Generated ✨' : 'Failed 😿';
-    document.getElementById('stat-recipient').textContent = email;
+    document.getElementById('stat-recipient').textContent = data.recipient || email;
     const signalsList = document.getElementById('signals-list');
     signalsList.innerHTML = '';
     document.getElementById('signals-count-tag').textContent = `${data.signals.length} found 🌸`;
@@ -671,13 +671,13 @@ launchBtn.addEventListener('click', async () => {
     });
     document.getElementById('account-brief').textContent = data.account_brief;
     document.getElementById('email-subject').textContent = data.subject || '(No subject)';
-    document.getElementById('email-to').textContent = email;
+    document.getElementById('email-to').textContent = data.recipient || email || '(auto-found via Hunter)';
     document.getElementById('email-body').textContent = data.generated_email;
     const badge = document.getElementById('status-badge');
     const st = data.status;
     badge.className = 'status-badge ' + st;
-    document.getElementById('status-text').textContent = st === 'sent' ? '💌 Email sent!' : st === 'generated' ? '✨ Generated - not sent' : '😿 Failed';
-    document.getElementById('status-note').textContent = st === 'sent' ? `Delivered to ${email} via SMTP 🎀` : st === 'generated' ? 'SMTP credentials missing. Email was generated successfully~ ✨' : 'Check your GROQ_API_KEY and backend logs 🌸';
+    document.getElementById('status-text').textContent = st === 'sent' ? '💌 Email sent!' : st === 'generated' ? '✨ Generated - not sent' : st === 'no_recipient' ? '😿 No recipient found' : '😿 Failed';
+    document.getElementById('status-note').textContent = st === 'sent' ? `Delivered to ${data.recipient} via SMTP 🎀` : st === 'generated' ? `Email generated but not delivered — check backend logs for SMTP error 🌸` : st === 'no_recipient' ? 'Hunter could not find an email for this company. Please enter one manually 💌' : 'Check your GROQ_API_KEY and backend logs 🌸';
     markAllDone();
     loadingState.classList.remove('visible');
     results.classList.add('visible');
