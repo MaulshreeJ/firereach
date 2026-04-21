@@ -3,477 +3,577 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OutreachAI - Autonomous Outreach Engine</title>
+<title>🌸 PookieReach ✨ Kawaii SDR Engine</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
+:root {
+  --pink:       #ff85a1;
+  --pink-light: #ffc2d1;
+  --pink-pale:  #fff0f5;
+  --pink-deep:  #e8547a;
+  --cream:      #fff8fb;
+  --lavender:   #e8d5f5;
+  --lavender2:  #c9a8e8;
+  --mint:       #b8f0e0;
+  --mint2:      #5ecba1;
+  --yellow:     #fff0a0;
+  --yellow2:    #f5c842;
+  --blue-soft:  #c5e8ff;
+  --blue2:      #5aabdd;
+  --text:       #5a3a4a;
+  --text-light: #b08090;
+  --border:     #f5c8d8;
+  --white:      #ffffff;
+}
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-font-family: 'DM Sans', sans-serif;
-background: #f0ede6;
-min-height: 100vh;
-color: #0d0d0d;
-display: flex;
+  font-family: 'Nunito', sans-serif;
+  background: var(--cream);
+  background-image:
+    radial-gradient(circle at 10% 20%, #ffe0ec 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, #f0e0ff 0%, transparent 40%);
+  min-height: 100vh;
+  color: var(--text);
+  display: flex;
 }
+
+/* ── SIDEBAR ── */
 .sidebar {
-width: 290px;
-background: #0d0d0d;
-padding: 28px 22px;
-display: flex;
-flex-direction: column;
-gap: 22px;
-position: sticky;
-top: 0;
-height: 100vh;
-overflow-y: auto;
-flex-shrink: 0;
+  width: 300px;
+  background: linear-gradient(180deg, #ff85a1 0%, #e8547a 100%);
+  padding: 28px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  flex-shrink: 0;
+  box-shadow: 4px 0 24px rgba(255,133,161,0.25);
 }
-.brand { display: flex; align-items: center; gap: 11px; }
+.brand { display: flex; align-items: center; gap: 12px; }
 .brand-icon {
-width: 40px; height: 40px;
-background: linear-gradient(135deg, #ff5c00, #ff9500);
-border-radius: 12px;
-display: flex; align-items: center; justify-content: center;
-flex-shrink: 0;
+  width: 46px; height: 46px;
+  background: rgba(255,255,255,0.25);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+  border: 2px solid rgba(255,255,255,0.4);
+  animation: heartbeat 2.5s ease-in-out infinite;
 }
-.brand-icon svg { width: 20px; height: 20px; fill: #fff; }
 .brand-name {
-font-family: 'Syne', sans-serif;
-font-size: 20px; font-weight: 800;
-color: #fff; letter-spacing: -0.5px;
+  font-size: 20px; font-weight: 900;
+  color: #fff; letter-spacing: -0.3px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 .brand-tag {
-font-size: 10px; font-weight: 600;
-color: #ff7a2f; letter-spacing: 1px; text-transform: uppercase;
+  font-size: 10px; font-weight: 700;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 1px; text-transform: uppercase;
 }
-.divider { height: 1px; background: rgba(255,255,255,0.07); }
+.divider { height: 1px; background: rgba(255,255,255,0.2); border-radius: 1px; }
 .sec-hd {
-font-size: 9px; font-weight: 600; color: #444;
-text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 10px;
+  font-size: 9px; font-weight: 800; color: rgba(255,255,255,0.7);
+  text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px;
 }
 .form-group { margin-bottom: 12px; }
 .form-group label {
-display: block; font-size: 10px; font-weight: 600;
-color: #555; text-transform: uppercase;
-letter-spacing: 0.6px; margin-bottom: 5px;
+  display: block; font-size: 11px; font-weight: 800;
+  color: rgba(255,255,255,0.9);
+  letter-spacing: 0.4px; margin-bottom: 5px;
 }
 .form-group input,
 .form-group textarea {
-width: 100%; padding: 10px 13px;
-background: #1a1a1a; border: 1.5px solid #2a2a2a;
-border-radius: 9px; font-size: 13px; color: #e0e0e0;
-font-family: 'DM Sans', sans-serif; font-weight: 500;
-transition: border-color 0.2s;
+  width: 100%; padding: 10px 14px;
+  background: rgba(255,255,255,0.2);
+  border: 2px solid rgba(255,255,255,0.35);
+  border-radius: 14px; font-size: 13px; color: #fff;
+  font-family: 'Nunito', sans-serif; font-weight: 600;
+  transition: all 0.2s;
 }
 .form-group input::placeholder,
-.form-group textarea::placeholder { color: #3a3a3a; }
+.form-group textarea::placeholder { color: rgba(255,255,255,0.5); }
 .form-group input:focus,
-.form-group textarea:focus { outline: none; border-color: #ff5c00; }
+.form-group textarea:focus {
+  outline: none;
+  border-color: rgba(255,255,255,0.8);
+  background: rgba(255,255,255,0.3);
+}
 .form-group textarea { resize: vertical; min-height: 80px; line-height: 1.5; }
 .launch-btn {
-width: 100%; padding: 13px;
-background: linear-gradient(135deg, #ff5c00, #ff9500);
-color: #fff; border: none; border-radius: 10px;
-font-size: 13px; font-weight: 700; cursor: pointer;
-display: flex; align-items: center; justify-content: center; gap: 8px;
-font-family: 'DM Sans', sans-serif; letter-spacing: 0.3px;
-transition: opacity 0.2s, transform 0.1s;
+  width: 100%; padding: 14px;
+  background: #fff;
+  color: var(--pink-deep); border: none; border-radius: 50px;
+  font-size: 14px; font-weight: 900; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  font-family: 'Nunito', sans-serif;
+  transition: all 0.2s;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  position: relative; overflow: hidden;
 }
-.launch-btn svg { width: 14px; height: 14px; fill: #fff; }
-.launch-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+.launch-btn::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.5) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2.4s linear infinite;
+  pointer-events: none;
+}
+.launch-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
 .launch-btn:active { transform: translateY(0); }
 .launch-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 .pipeline-section { display: none; }
 .pipeline-section.visible { display: block; }
 .pipeline-steps { display: flex; flex-direction: column; gap: 7px; }
 .p-step {
-display: flex; align-items: center; gap: 10px;
-padding: 10px 13px; border-radius: 9px;
-border: 1.5px solid #1e1e1e; background: #141414;
-transition: all 0.3s;
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 13px; border-radius: 14px;
+  border: 2px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.1);
+  transition: all 0.3s;
 }
-.p-step.active { border-color: #ff5c00; background: rgba(255,92,0,0.08); }
-.p-step.done   { border-color: #1a3a2a; background: #0f2a1a; }
+.p-step.active { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.25); }
+.p-step.done   { border-color: rgba(184,240,224,0.6); background: rgba(94,203,161,0.2); }
 .p-step-num {
-width: 22px; height: 22px; border-radius: 50%;
-background: #252525; display: flex; align-items: center;
-justify-content: center; font-size: 10px; font-weight: 800;
-color: #555; flex-shrink: 0; transition: all 0.3s;
+  width: 24px; height: 24px; border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 900; color: rgba(255,255,255,0.6);
+  flex-shrink: 0; transition: all 0.3s;
 }
-.p-step.active .p-step-num { background: #ff5c00; color: #fff; }
-.p-step.done   .p-step-num { background: #00c46a; color: #fff; }
-.p-step-label { font-size: 12px; font-weight: 600; color: #444; transition: color 0.3s; }
-.p-step.active .p-step-label { color: #ff7a2f; }
-.p-step.done   .p-step-label { color: #00c46a; }
+.p-step.active .p-step-num { background: #fff; color: var(--pink-deep); }
+.p-step.done   .p-step-num { background: var(--mint2); color: #fff; }
+.p-step-label { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.6); transition: color 0.3s; }
+.p-step.active .p-step-label { color: #fff; }
+.p-step.done   .p-step-label { color: var(--mint); }
 .pulse-dot {
-width: 6px; height: 6px; border-radius: 50%;
-background: #ff5c00; margin-left: auto;
-display: none; animation: pulse 1.1s ease-in-out infinite;
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #fff; margin-left: auto;
+  display: none; animation: pulse 1.1s ease-in-out infinite;
 }
 .p-step.active .pulse-dot { display: block; }
-@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.15;} }
-@keyframes spin   { to { transform: rotate(360deg); } }
+
+@keyframes pulse    { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.2;transform:scale(0.7);} }
+@keyframes spin     { to { transform: rotate(360deg); } }
+@keyframes float    { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
+@keyframes sparkle  { 0%,100%{opacity:1;transform:scale(1) rotate(0deg);} 50%{opacity:0.6;transform:scale(1.3) rotate(25deg);} }
+@keyframes wiggle   { 0%,100%{transform:rotate(-4deg);} 50%{transform:rotate(4deg);} }
+@keyframes popIn    { 0%{opacity:0;transform:scale(0.7) translateY(12px);} 80%{transform:scale(1.05) translateY(-2px);} 100%{opacity:1;transform:scale(1) translateY(0);} }
+@keyframes shimmer  { 0%{background-position:200% center;} 100%{background-position:-200% center;} }
+@keyframes heartbeat{ 0%,100%{transform:scale(1);} 14%{transform:scale(1.15);} 28%{transform:scale(1);} 42%{transform:scale(1.1);} 70%{transform:scale(1);} }
+@keyframes slideUp  { 0%{opacity:0;transform:translateY(20px);} 100%{opacity:1;transform:translateY(0);} }
+@keyframes starSpin { 0%{transform:rotate(0deg) scale(1);} 50%{transform:rotate(180deg) scale(1.2);} 100%{transform:rotate(360deg) scale(1);} }
+@keyframes bounce   { 0%,100%{transform:translateY(0);} 40%{transform:translateY(-10px);} 60%{transform:translateY(-5px);} }
+
+/* ── MAIN ── */
 .main {
-flex: 1; padding: 30px 28px;
-background: #f0ede6; overflow-y: auto;
-display: flex; flex-direction: column; gap: 16px;
+  flex: 1; padding: 30px 28px;
+  overflow-y: auto;
+  display: flex; flex-direction: column; gap: 16px;
 }
 .main-top {
-display: flex; align-items: flex-start;
-justify-content: space-between; margin-bottom: 4px;
+  display: flex; align-items: flex-start;
+  justify-content: space-between; margin-bottom: 4px;
 }
 .page-title {
-font-family: 'Syne', sans-serif;
-font-size: 30px; font-weight: 800;
-color: #0d0d0d; letter-spacing: -1.2px; line-height: 1.05;
+  font-size: 32px; font-weight: 900;
+  color: var(--text); letter-spacing: -1px; line-height: 1.05;
 }
-.page-title span { color: #ff5c00; }
-.page-sub { font-size: 12px; font-weight: 500; color: #999; margin-top: 6px; }
+.page-title span { color: var(--pink-deep); }
+.page-sub { font-size: 12px; font-weight: 600; color: var(--text-light); margin-top: 6px; }
 .live-chip {
-display: inline-flex; align-items: center; gap: 6px;
-padding: 7px 13px; background: #0d0d0d; border-radius: 20px;
-font-size: 11px; font-weight: 700; color: #fff; letter-spacing: 0.3px;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 14px;
+  background: linear-gradient(135deg, var(--pink), var(--pink-deep));
+  border-radius: 50px;
+  font-size: 11px; font-weight: 800; color: #fff;
+  box-shadow: 0 4px 12px rgba(255,133,161,0.4);
 }
 .live-dot {
-width: 6px; height: 6px; border-radius: 50%;
-background: #00c46a; animation: pulse 1.3s ease-in-out infinite;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #fff; animation: pulse 1.3s ease-in-out infinite;
 }
 .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.stat-card { border-radius: 14px; padding: 18px 20px; }
-.sc-orange { background: #ff5c00; }
-.sc-purple { background: #5b21b6; }
+.stat-card { border-radius: 20px; padding: 20px 22px; position: relative; overflow: hidden; }
+.sc-pink {
+  background: linear-gradient(135deg, var(--pink), var(--pink-deep));
+  box-shadow: 0 8px 24px rgba(255,133,161,0.35);
+}
+.sc-lav {
+  background: linear-gradient(135deg, var(--lavender2), #9b59b6);
+  box-shadow: 0 8px 24px rgba(201,168,232,0.4);
+}
 .stat-card .sc-label {
-font-size: 9px; font-weight: 700;
-color: rgba(255,255,255,0.55);
-text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;
+  font-size: 9px; font-weight: 800;
+  color: rgba(255,255,255,0.65);
+  text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;
 }
 .stat-card .sc-val {
-font-family: 'Syne', sans-serif;
-font-size: 36px; font-weight: 800;
-color: #fff; letter-spacing: -1.5px; line-height: 1;
+  font-size: 38px; font-weight: 900;
+  color: #fff; letter-spacing: -1.5px; line-height: 1;
 }
 .stat-card .sc-sub {
-font-size: 11px; font-weight: 500;
-color: rgba(255,255,255,0.5); margin-top: 5px;
+  font-size: 11px; font-weight: 600;
+  color: rgba(255,255,255,0.55); margin-top: 5px;
 }
+.stat-deco {
+  position: absolute; right: 14px; top: 14px;
+  font-size: 28px; opacity: 0.3;
+  animation: starSpin 6s linear infinite;
+}
+
+/* ── RESULT CARDS ── */
 .result-card {
-background: #fff; border-radius: 16px;
-overflow: hidden; border: 1.5px solid #e8e3da;
+  background: var(--white); border-radius: 20px;
+  overflow: hidden; border: 2px solid var(--border);
+  box-shadow: 0 4px 20px rgba(255,133,161,0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+  animation: slideUp 0.5s ease both;
+}
+.result-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 32px rgba(255,133,161,0.18);
 }
 .card-header {
-display: flex; align-items: center; justify-content: space-between;
-padding: 15px 20px; border-bottom: 1.5px solid #f3efe8;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 15px 20px; border-bottom: 2px solid var(--pink-pale);
+  background: var(--pink-pale);
 }
 .card-header-left { display: flex; align-items: center; gap: 10px; }
 .card-icon {
-width: 32px; height: 32px; border-radius: 9px;
-display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  width: 34px; height: 34px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; flex-shrink: 0;
 }
-.ci-orange { background: #fff3eb; }
-.ci-purple { background: #ede9fe; }
-.ci-blue   { background: #dbeafe; }
-.ci-green  { background: #d1fae5; }
-.card-icon svg { width: 15px; height: 15px; }
+.ci-pink   { background: var(--pink-light); }
+.ci-lav    { background: var(--lavender); }
+.ci-blue   { background: var(--blue-soft); }
+.ci-mint   { background: var(--mint); }
 .card-title {
-font-family: 'Syne', sans-serif;
-font-size: 14px; font-weight: 800;
-color: #0d0d0d; letter-spacing: -0.3px;
+  font-size: 14px; font-weight: 900;
+  color: var(--text); letter-spacing: -0.2px;
 }
 .card-tag {
-padding: 4px 10px; border-radius: 20px;
-font-size: 10px; font-weight: 700;
+  padding: 4px 12px; border-radius: 50px;
+  font-size: 10px; font-weight: 800;
 }
-.ct-orange { background: #fff3eb; color: #c2410c; }
-.ct-purple { background: #ede9fe; color: #6d28d9; }
-.ct-green  { background: #d1fae5; color: #065f46; }
+.ct-pink   { background: var(--pink-light); color: var(--pink-deep); }
+.ct-lav    { background: var(--lavender); color: #7c3aed; }
+.ct-mint   { background: var(--mint); color: #065f46; }
 .card-body { padding: 18px 20px; }
+
+/* ── SIGNALS ── */
 .signals-grid { display: flex; flex-direction: column; gap: 9px; }
 .signal-item {
-display: flex; align-items: flex-start; gap: 12px;
-padding: 12px 14px; background: #fafaf9;
-border-radius: 11px; border: 1.5px solid #f0ece4;
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 12px 14px; background: var(--pink-pale);
+  border-radius: 14px; border: 2px solid var(--border);
+  transition: transform 0.2s, box-shadow 0.2s;
+  animation: popIn 0.4s ease both;
+}
+.signal-item:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 14px rgba(255,133,161,0.2);
 }
 .signal-num {
-width: 22px; height: 22px; border-radius: 7px;
-background: #ff5c00; display: flex; align-items: center;
-justify-content: center; font-size: 10px; font-weight: 800;
-color: #fff; flex-shrink: 0; margin-top: 1px;
+  width: 24px; height: 24px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--pink), var(--pink-deep));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 900; color: #fff;
+  flex-shrink: 0; margin-top: 1px;
 }
-.signal-content .signal-text {
-font-size: 13px; font-weight: 500; color: #333; line-height: 1.55;
-}
+.signal-content .signal-text { font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.55; }
 .signal-badge {
-display: inline-block; margin-top: 5px;
-padding: 2px 8px; border-radius: 20px;
-font-size: 9px; font-weight: 700;
+  display: inline-block; margin-top: 5px;
+  padding: 2px 10px; border-radius: 50px;
+  font-size: 9px; font-weight: 800;
 }
-.sb-fund { background: #fef3c7; color: #92400e; }
-.sb-hire { background: #ede9fe; color: #5b21b6; }
-.sb-exp  { background: #d1fae5; color: #065f46; }
-.sb-part { background: #dbeafe; color: #1e40af; }
+.sb-fund { background: var(--yellow); color: #92400e; }
+.sb-hire { background: var(--lavender); color: #5b21b6; }
+.sb-exp  { background: var(--mint); color: #065f46; }
+.sb-part { background: var(--blue-soft); color: #1e40af; }
+
+/* ── BRIEF ── */
 .brief-text {
-font-size: 14px; font-weight: 400; color: #444;
-line-height: 1.9; white-space: pre-wrap;
+  font-size: 14px; font-weight: 500; color: var(--text);
+  line-height: 1.9; white-space: pre-wrap;
 }
+
+/* ── EMAIL ── */
 .email-wrap {
-background: #fafaf9; border: 1.5px solid #f0ece4;
-border-radius: 12px; overflow: hidden;
+  background: var(--pink-pale); border: 2px solid var(--border);
+  border-radius: 16px; overflow: hidden;
 }
 .email-chrome {
-display: flex; align-items: center; gap: 6px;
-padding: 10px 14px; background: #f5f1ea;
-border-bottom: 1.5px solid #ece8e0;
+  display: flex; align-items: center; gap: 6px;
+  padding: 10px 14px; background: var(--pink-light);
+  border-bottom: 2px solid var(--border);
 }
 .ecd { width: 10px; height: 10px; border-radius: 50%; }
-.email-subj-row { padding: 14px 16px; border-bottom: 1px solid #f0ece4; }
-.email-subj {
-font-family: 'Syne', sans-serif;
-font-size: 15px; font-weight: 800;
-color: #0d0d0d; letter-spacing: -0.4px;
-}
+.email-subj-row { padding: 14px 16px; border-bottom: 1px solid var(--border); }
+.email-subj { font-size: 15px; font-weight: 900; color: var(--text); letter-spacing: -0.3px; }
 .email-to-row {
-padding: 8px 16px; border-bottom: 1px solid #f5f2eb;
-display: flex; align-items: center; gap: 8px;
+  padding: 8px 16px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 8px;
 }
-.etl { font-size: 10px; font-weight: 700; color: #bbb; text-transform: uppercase; letter-spacing: 0.5px; }
-.etv { font-size: 12px; font-weight: 600; color: #5b21b6; }
+.etl { font-size: 10px; font-weight: 800; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.5px; }
+.etv { font-size: 12px; font-weight: 700; color: var(--lavender2); }
 .email-body-text {
-padding: 16px; font-size: 13px; color: #555;
-line-height: 1.85; white-space: pre-wrap;
+  padding: 16px; font-size: 13px; color: var(--text);
+  line-height: 1.85; white-space: pre-wrap; font-weight: 500;
 }
+
+/* ── STATUS ── */
 .status-container { display: flex; align-items: center; gap: 12px; }
 .status-badge {
-display: inline-flex; align-items: center; gap: 7px;
-padding: 8px 16px; border-radius: 20px;
-font-size: 12px; font-weight: 700;
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 8px 18px; border-radius: 50px;
+  font-size: 12px; font-weight: 800;
 }
-.status-badge.sent      { background: #d1fae5; border: 1.5px solid #6ee7b7; color: #065f46; }
-.status-badge.generated { background: #fef3c7; border: 1.5px solid #fcd34d; color: #92400e; }
-.status-badge.failed    { background: #fee2e2; border: 1.5px solid #fca5a5; color: #7f1d1d; }
+.status-badge.sent      { background: var(--mint); border: 2px solid var(--mint2); color: #065f46; }
+.status-badge.generated { background: var(--yellow); border: 2px solid var(--yellow2); color: #92400e; }
+.status-badge.failed    { background: #fee2e2; border: 2px solid #fca5a5; color: #7f1d1d; }
 .sdot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
-.status-note { font-size: 12px; font-weight: 500; color: #aaa; }
+.status-note { font-size: 12px; font-weight: 600; color: var(--text-light); }
+
+/* ── EMPTY STATE ── */
 .empty-state {
-display: flex; flex-direction: column;
-align-items: center; justify-content: center;
-padding: 80px 40px; text-align: center;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 80px 40px; text-align: center;
 }
 .empty-icon {
-width: 72px; height: 72px;
-background: #fff; border: 1.5px solid #e8e3da;
-border-radius: 18px; display: flex;
-align-items: center; justify-content: center;
-margin-bottom: 20px;
+  font-size: 64px; margin-bottom: 20px;
+  animation: bounce 2s ease-in-out infinite;
 }
-.empty-icon svg { width: 32px; height: 32px; fill: #ff5c00; }
 .empty-state h3 {
-font-family: 'Syne', sans-serif;
-font-size: 20px; font-weight: 800;
-color: #0d0d0d; margin-bottom: 8px; letter-spacing: -0.5px;
+  font-size: 22px; font-weight: 900;
+  color: var(--text); margin-bottom: 8px;
 }
-.empty-state p { font-size: 13px; color: #999; max-width: 320px; line-height: 1.7; }
+.empty-state p { font-size: 13px; color: var(--text-light); max-width: 320px; line-height: 1.7; font-weight: 600; }
+
+/* ── LOADING ── */
 .loading-state {
-display: none; flex-direction: column;
-align-items: center; justify-content: center;
-padding: 80px 40px; text-align: center;
+  display: none; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 80px 40px; text-align: center;
 }
 .loading-state.visible { display: flex; }
 .loading-ring {
-width: 52px; height: 52px;
-border: 3px solid #e8e3da;
-border-top: 3px solid #ff5c00;
-border-radius: 50%;
-animation: spin 0.9s linear infinite;
-margin-bottom: 20px;
+  width: 56px; height: 56px;
+  border: 4px solid var(--pink-light);
+  border-top: 4px solid var(--pink-deep);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+  margin-bottom: 20px;
 }
-.loading-state h3 {
-font-family: 'Syne', sans-serif;
-font-size: 18px; font-weight: 800;
-color: #0d0d0d; margin-bottom: 6px;
-}
-.loading-state p { font-size: 13px; color: #999; }
+.loading-state h3 { font-size: 18px; font-weight: 900; color: var(--text); margin-bottom: 6px; }
+.loading-state p { font-size: 13px; color: var(--text-light); font-weight: 600; }
+
+/* ── RESULTS ── */
 .results { display: none; flex-direction: column; gap: 14px; }
 .results.visible { display: flex; }
+
+/* ── ERROR ── */
+.error-banner {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 14px 18px; background: #fee2e2;
+  border: 2px solid #fca5a5; border-radius: 16px;
+  color: #7f1d1d; font-size: 13px; font-weight: 600; line-height: 1.6;
+}
+
+.result-card:nth-child(1) { animation-delay: 0.05s; }
+.result-card:nth-child(2) { animation-delay: 0.12s; }
+.result-card:nth-child(3) { animation-delay: 0.19s; }
+.result-card:nth-child(4) { animation-delay: 0.26s; }
+
 @media (max-width: 900px) {
-body { flex-direction: column; }
-.sidebar { width: 100%; height: auto; position: relative; }
-.main { padding: 24px 18px; }
-.grid2 { grid-template-columns: 1fr; }
+  body { flex-direction: column; }
+  .sidebar { width: 100%; height: auto; position: relative; }
+  .main { padding: 24px 18px; }
+  .grid2 { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
+
 <aside class="sidebar">
-<div class="brand">
-<div class="brand-icon">
-<svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-</div>
-<div>
-<div class="brand-name">OutreachAI</div>
-<div class="brand-tag">SDR Engine</div>
-</div>
-</div>
-<div class="divider"></div>
-<div>
-<div class="sec-hd">Campaign setup</div>
-<div class="form-group">
-<label for="icp">Ideal Customer Profile</label>
-<textarea id="icp" placeholder="e.g., We sell cybersecurity training to Series B SaaS startups with 50-200 employees."></textarea>
-</div>
-<div class="form-group">
-<label for="company">Target Company</label>
-<input type="text" id="company" placeholder="e.g., Stripe">
-</div>
-<div class="form-group">
-<label for="email">Recipient Email</label>
-<input type="email" id="email" placeholder="e.g., cto@company.com">
-</div>
-<button class="launch-btn" id="launch-btn">
-<svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-Launch campaign
-</button>
-</div>
-<div class="divider"></div>
-<div class="pipeline-section" id="pipeline-section">
-<div class="sec-hd">Agent pipeline</div>
-<div class="pipeline-steps">
-<div class="p-step" id="ps-1">
-<div class="p-step-num">1</div>
-<div class="p-step-label">Signal harvesting</div>
-<div class="pulse-dot"></div>
-</div>
-<div class="p-step" id="ps-2">
-<div class="p-step-num">2</div>
-<div class="p-step-label">Research analysis</div>
-<div class="pulse-dot"></div>
-</div>
-<div class="p-step" id="ps-3">
-<div class="p-step-num">3</div>
-<div class="p-step-label">Email generation</div>
-<div class="pulse-dot"></div>
-</div>
-<div class="p-step" id="ps-4">
-<div class="p-step-num">4</div>
-<div class="p-step-label">Dispatch</div>
-<div class="pulse-dot"></div>
-</div>
-</div>
-</div>
+  <div class="brand">
+    <div class="brand-icon">🌸</div>
+    <div>
+      <div class="brand-name">PookieReach</div>
+      <div class="brand-tag">✨ kawaii sdr engine</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div>
+    <div class="sec-hd">🎀 campaign setup</div>
+    <div class="form-group">
+      <label for="icp">💖 Ideal Customer Profile</label>
+      <textarea id="icp" placeholder="e.g., We sell cybersecurity training to Series B SaaS startups with 50-200 employees."></textarea>
+    </div>
+    <div class="form-group">
+      <label for="company">🏠 Target Company</label>
+      <input type="text" id="company" placeholder="e.g., Stripe">
+    </div>
+    <div class="form-group">
+      <label for="email">💌 Recipient Email</label>
+      <input type="email" id="email" placeholder="e.g., cto@company.com">
+    </div>
+    <button class="launch-btn" id="launch-btn">
+      🚀 Launch Campaign ✨
+    </button>
+  </div>
+  <div class="divider"></div>
+  <div class="pipeline-section" id="pipeline-section">
+    <div class="sec-hd">🌟 agent pipeline</div>
+    <div class="pipeline-steps">
+      <div class="p-step" id="ps-1">
+        <div class="p-step-num">1</div>
+        <div class="p-step-label">🔍 Signal harvesting</div>
+        <div class="pulse-dot"></div>
+      </div>
+      <div class="p-step" id="ps-2">
+        <div class="p-step-num">2</div>
+        <div class="p-step-label">🧠 Research analysis</div>
+        <div class="pulse-dot"></div>
+      </div>
+      <div class="p-step" id="ps-3">
+        <div class="p-step-num">3</div>
+        <div class="p-step-label">✍️ Email generation</div>
+        <div class="pulse-dot"></div>
+      </div>
+      <div class="p-step" id="ps-4">
+        <div class="p-step-num">4</div>
+        <div class="p-step-label">💌 Dispatch</div>
+        <div class="pulse-dot"></div>
+      </div>
+    </div>
+  </div>
 </aside>
+
 <main class="main">
-<div class="main-top">
-<div>
-<div class="page-title">Campaign<br><span>Results</span></div>
-<div class="page-sub" id="campaign-sub">Fill in the form and launch your campaign.</div>
-</div>
-<div class="live-chip" id="live-chip" style="display:none;">
-<div class="live-dot"></div>Live
-</div>
-</div>
-<div class="empty-state" id="empty-state">
-<div class="empty-icon">
-<svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-</div>
-<h3>Ready to launch</h3>
-<p>Fill in your ICP, target company, and recipient email - then hit Launch campaign to run the autonomous pipeline.</p>
-</div>
-<div class="loading-state" id="loading-state">
-<div class="loading-ring"></div>
-<h3>Running pipeline...</h3>
-<p id="loading-label">Harvesting signals from the web</p>
-</div>
-<div class="results" id="results">
-<div class="grid2">
-<div class="stat-card sc-orange">
-<div class="sc-label">Signals captured</div>
-<div class="sc-val" id="stat-signals">-</div>
-<div class="sc-sub">from web search</div>
-</div>
-<div class="stat-card sc-purple">
-<div class="sc-label">Email status</div>
-<div class="sc-val" id="stat-status" style="font-size:22px;padding-top:6px;">-</div>
-<div class="sc-sub" id="stat-recipient">-</div>
-</div>
-</div>
-<div class="result-card">
-<div class="card-header">
-<div class="card-header-left">
-<div class="card-icon ci-orange">
-<svg viewBox="0 0 24 24" fill="none" stroke="#ff5c00" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-</div>
-<div class="card-title">Signals captured</div>
-</div>
-<span class="card-tag ct-orange" id="signals-count-tag">-</span>
-</div>
-<div class="card-body">
-<div class="signals-grid" id="signals-list"></div>
-</div>
-</div>
-<div class="result-card">
-<div class="card-header">
-<div class="card-header-left">
-<div class="card-icon ci-purple">
-<svg viewBox="0 0 24 24" fill="none" stroke="#6d28d9" stroke-width="2.5"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 9h8M8 13h5"/></svg>
-</div>
-<div class="card-title">Account brief</div>
-</div>
-<span class="card-tag ct-purple">AI generated</span>
-</div>
-<div class="card-body">
-<div class="brief-text" id="account-brief"></div>
-</div>
-</div>
-<div class="result-card">
-<div class="card-header">
-<div class="card-header-left">
-<div class="card-icon ci-blue">
-<svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-</div>
-<div class="card-title">Generated email</div>
-</div>
-<span class="card-tag ct-green">Ready</span>
-</div>
-<div class="card-body">
-<div class="email-wrap">
-<div class="email-chrome">
-<div class="ecd" style="background:#f87171;"></div>
-<div class="ecd" style="background:#fbbf24;"></div>
-<div class="ecd" style="background:#34d399;"></div>
-</div>
-<div class="email-subj-row">
-<div class="email-subj" id="email-subject"></div>
-</div>
-<div class="email-to-row">
-<span class="etl">To</span>
-<span class="etv" id="email-to"></span>
-</div>
-<div class="email-body-text" id="email-body"></div>
-</div>
-</div>
-</div>
-<div class="result-card">
-<div class="card-header">
-<div class="card-header-left">
-<div class="card-icon ci-green">
-<svg viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-</div>
-<div class="card-title">Delivery status</div>
-</div>
-</div>
-<div class="card-body">
-<div class="status-container">
-<div class="status-badge" id="status-badge">
-<div class="sdot"></div>
-<span id="status-text"></span>
-</div>
-<span class="status-note" id="status-note"></span>
-</div>
-</div>
-</div>
-</div>
+  <div class="main-top">
+    <div>
+      <div class="page-title">Campaign<br><span>Results ✨</span></div>
+      <div class="page-sub" id="campaign-sub">Fill in the form and launch your campaign, bestie~ 🌸</div>
+    </div>
+    <div class="live-chip" id="live-chip" style="display:none;">
+      <div class="live-dot"></div>Live ✨
+    </div>
+  </div>
+
+  <div class="error-banner" id="error-banner" style="display:none;">
+    😿 <span id="error-message"></span>
+  </div>
+
+  <div class="empty-state" id="empty-state">
+    <div class="empty-icon">🌸</div>
+    <h3>Ready to connect?✨</h3>
+    <p>Fill in your ICP, target company, and recipient email — then hit Launch to run the kawaii autonomous pipeline~ ✨🎀</p>
+  </div>
+
+  <div class="loading-state" id="loading-state">
+    <div class="loading-ring"></div>
+    <h3>Running pipeline... 🌸</h3>
+    <p id="loading-label">Harvesting signals from the web~ ✨</p>
+  </div>
+
+  <div class="results" id="results">
+    <div class="grid2">
+      <div class="stat-card sc-pink">
+        <div class="stat-deco">🌸</div>
+        <div class="sc-label">Signals captured</div>
+        <div class="sc-val" id="stat-signals">-</div>
+        <div class="sc-sub">from web search ✨</div>
+      </div>
+      <div class="stat-card sc-lav">
+        <div class="stat-deco">💌</div>
+        <div class="sc-label">Email status</div>
+        <div class="sc-val" id="stat-status" style="font-size:22px;padding-top:6px;">-</div>
+        <div class="sc-sub" id="stat-recipient">-</div>
+      </div>
+    </div>
+
+    <div class="result-card">
+      <div class="card-header">
+        <div class="card-header-left">
+          <div class="card-icon ci-pink">🔍</div>
+          <div class="card-title">Signals captured 🌟</div>
+        </div>
+        <span class="card-tag ct-pink" id="signals-count-tag">-</span>
+      </div>
+      <div class="card-body">
+        <div class="signals-grid" id="signals-list"></div>
+      </div>
+    </div>
+
+    <div class="result-card">
+      <div class="card-header">
+        <div class="card-header-left">
+          <div class="card-icon ci-lav">📝</div>
+          <div class="card-title">Account brief 💜</div>
+        </div>
+        <span class="card-tag ct-lav">AI generated ✨</span>
+      </div>
+      <div class="card-body">
+        <div class="brief-text" id="account-brief"></div>
+      </div>
+    </div>
+
+    <div class="result-card">
+      <div class="card-header">
+        <div class="card-header-left">
+          <div class="card-icon ci-blue">💌</div>
+          <div class="card-title">Generated email 🎀</div>
+        </div>
+        <span class="card-tag ct-mint">Ready~ ✨</span>
+      </div>
+      <div class="card-body">
+        <div class="email-wrap">
+          <div class="email-chrome">
+            <div class="ecd" style="background:#f87171;"></div>
+            <div class="ecd" style="background:#fbbf24;"></div>
+            <div class="ecd" style="background:#34d399;"></div>
+          </div>
+          <div class="email-subj-row">
+            <div class="email-subj" id="email-subject"></div>
+          </div>
+          <div class="email-to-row">
+            <span class="etl">To 💌</span>
+            <span class="etv" id="email-to"></span>
+          </div>
+          <div class="email-body-text" id="email-body"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="result-card">
+      <div class="card-header">
+        <div class="card-header-left">
+          <div class="card-icon ci-mint">✅</div>
+          <div class="card-title">Delivery status 🌸</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="status-container">
+          <div class="status-badge" id="status-badge">
+            <div class="sdot"></div>
+            <span id="status-text"></span>
+          </div>
+          <span class="status-note" id="status-note"></span>
+        </div>
+      </div>
+    </div>
+  </div>
 </main>
+
+<script src="config.js"></script>
 <script>
-const API_URL = 'http://localhost:8000';
 const launchBtn = document.getElementById('launch-btn');
 const pipelineSection = document.getElementById('pipeline-section');
 const emptyState = document.getElementById('empty-state');
@@ -483,105 +583,114 @@ const results = document.getElementById('results');
 const liveChip = document.getElementById('live-chip');
 const campaignSub = document.getElementById('campaign-sub');
 const stepLabels = [
-'Harvesting signals from the web...',
-'Analysing signals against your ICP...',
-'Generating personalized email...',
-'Sending outreach...'
+  'Harvesting signals from the web~ ✨',
+  'Analysing signals against your ICP~ 🧠',
+  'Generating personalized email~ 💌',
+  'Sending outreach~ 🚀'
 ];
 function setPipelineStep(active) {
-[1,2,3,4].forEach(i => {
-const el = document.getElementById(`ps-${i}`);
-el.classList.remove('active', 'done');
-if (i < active) el.classList.add('done');
-else if (i === active) el.classList.add('active');
-});
-if (active >= 1 && active <= 4) loadingLabel.textContent = stepLabels[active - 1];
+  [1,2,3,4].forEach(i => {
+    const el = document.getElementById(`ps-${i}`);
+    el.classList.remove('active', 'done');
+    if (i < active) el.classList.add('done');
+    else if (i === active) el.classList.add('active');
+  });
+  if (active >= 1 && active <= 4) loadingLabel.textContent = stepLabels[active - 1];
 }
 function markAllDone() {
-[1,2,3,4].forEach(i => {
-const el = document.getElementById(`ps-${i}`);
-el.classList.remove('active');
-el.classList.add('done');
-});
+  [1,2,3,4].forEach(i => {
+    const el = document.getElementById(`ps-${i}`);
+    el.classList.remove('active');
+    el.classList.add('done');
+  });
 }
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 function getBadgeClass(signal) {
-const s = signal.toLowerCase();
-if (s.includes('fund') || s.includes('invest') || s.includes('capital') || s.includes('series')) return 'sb-fund';
-if (s.includes('hir') || s.includes('recruit') || s.includes('engineer') || s.includes('team')) return 'sb-hire';
-if (s.includes('partner') || s.includes('acqui')) return 'sb-part';
-return 'sb-exp';
+  const s = signal.toLowerCase();
+  if (s.includes('fund') || s.includes('invest') || s.includes('capital') || s.includes('series')) return 'sb-fund';
+  if (s.includes('hir') || s.includes('recruit') || s.includes('engineer') || s.includes('team')) return 'sb-hire';
+  if (s.includes('partner') || s.includes('acqui')) return 'sb-part';
+  return 'sb-exp';
 }
 function getBadgeLabel(signal) {
-const s = signal.toLowerCase();
-if (s.includes('fund') || s.includes('invest') || s.includes('capital') || s.includes('series')) return 'Funding';
-if (s.includes('hir') || s.includes('recruit') || s.includes('engineer') || s.includes('team')) return 'Hiring';
-if (s.includes('partner') || s.includes('acqui')) return 'Partnerships';
-return 'Expansion';
+  const s = signal.toLowerCase();
+  if (s.includes('fund') || s.includes('invest') || s.includes('capital') || s.includes('series')) return '💰 Funding';
+  if (s.includes('hir') || s.includes('recruit') || s.includes('engineer') || s.includes('team')) return '👥 Hiring';
+  if (s.includes('partner') || s.includes('acqui')) return '🤝 Partnerships';
+  return '🚀 Expansion';
 }
 launchBtn.addEventListener('click', async () => {
-const icp = document.getElementById('icp').value.trim();
-const company = document.getElementById('company').value.trim();
-const email = document.getElementById('email').value.trim();
-if (!icp || !company || !email) {
-alert('Please fill in all fields before launching.');
-return;
-}
-launchBtn.disabled = true;
-emptyState.style.display = 'none';
-results.classList.remove('visible');
-loadingState.classList.add('visible');
-pipelineSection.classList.add('visible');
-liveChip.style.display = 'inline-flex';
-campaignSub.textContent = `${company} · ${email}`;
-setPipelineStep(1); await sleep(1200);
-setPipelineStep(2); await sleep(1200);
-setPipelineStep(3); await sleep(1200);
-setPipelineStep(4);
-try {
-const res = await fetch(`${API_URL}/run-agent`, {
-method: 'POST',
-headers: { 'Content-Type': 'application/json' },
-body: JSON.stringify({ icp, company, recipient_email: email })
-});
-if (!res.ok) throw new Error(`Server error: ${res.status}`);
-const data = await res.json();
-document.getElementById('stat-signals').textContent = data.signals.length;
-document.getElementById('stat-status').textContent = data.status === 'sent' ? 'Sent ✓' : data.status === 'generated' ? 'Generated' : 'Failed';
-document.getElementById('stat-recipient').textContent = email;
-const signalsList = document.getElementById('signals-list');
-signalsList.innerHTML = '';
-document.getElementById('signals-count-tag').textContent = `${data.signals.length} found`;
-data.signals.forEach((sig, idx) => {
-signalsList.innerHTML += `
-<div class="signal-item">
-<div class="signal-num">${idx + 1}</div>
-<div class="signal-content">
-<div class="signal-text">${sig}</div>
-<span class="signal-badge ${getBadgeClass(sig)}">${getBadgeLabel(sig)}</span>
-</div>
-</div>`;
-});
-document.getElementById('account-brief').textContent = data.account_brief;
-document.getElementById('email-subject').textContent = data.subject || '(No subject)';
-document.getElementById('email-to').textContent = email;
-document.getElementById('email-body').textContent = data.generated_email;
-const badge = document.getElementById('status-badge');
-const st = data.status;
-badge.className = 'status-badge ' + st;
-document.getElementById('status-text').textContent = st === 'sent' ? 'Email sent' : st === 'generated' ? 'Generated - not sent' : 'Failed';
-document.getElementById('status-note').textContent = st === 'sent' ? `Delivered to ${email} via SMTP` : st === 'generated' ? 'SMTP credentials missing. Email was generated successfully.' : 'Check your GROQ_API_KEY and backend logs.';
-markAllDone();
-loadingState.classList.remove('visible');
-results.classList.add('visible');
-} catch (err) {
-alert('Error: ' + err.message + '\n\nMake sure the backend is running on ' + API_URL);
-loadingState.classList.remove('visible');
-emptyState.style.display = 'flex';
-pipelineSection.classList.remove('visible');
-liveChip.style.display = 'none';
-}
-launchBtn.disabled = false;
+  const icp = document.getElementById('icp').value.trim();
+  const company = document.getElementById('company').value.trim();
+  const email = document.getElementById('email').value.trim();
+  if (!icp || !company || !email) {
+    const banner = document.getElementById('error-banner');
+    document.getElementById('error-message').textContent = 'Please fill in all fields before launching, bestie! 🌸';
+    banner.style.display = 'flex';
+    return;
+  }
+  document.getElementById('error-banner').style.display = 'none';
+  launchBtn.disabled = true;
+  emptyState.style.display = 'none';
+  results.classList.remove('visible');
+  loadingState.classList.add('visible');
+  pipelineSection.classList.add('visible');
+  liveChip.style.display = 'inline-flex';
+  campaignSub.textContent = `${company} · ${email} 🌸`;
+  setPipelineStep(1); await sleep(1200);
+  setPipelineStep(2); await sleep(1200);
+  setPipelineStep(3); await sleep(1200);
+  setPipelineStep(4);
+  try {
+    const res = await fetch(`${API_URL}/run-agent`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ icp, company, recipient_email: email })
+    });
+    if (!res.ok) {
+      let msg = `Server error: ${res.status}`;
+      try { const errData = await res.json(); msg = errData.detail || errData.message || msg; } catch (_) {}
+      throw new Error(msg);
+    }
+    const data = await res.json();
+    document.getElementById('stat-signals').textContent = data.signals.length;
+    document.getElementById('stat-status').textContent = data.status === 'sent' ? 'Sent 💌' : data.status === 'generated' ? 'Generated ✨' : 'Failed 😿';
+    document.getElementById('stat-recipient').textContent = email;
+    const signalsList = document.getElementById('signals-list');
+    signalsList.innerHTML = '';
+    document.getElementById('signals-count-tag').textContent = `${data.signals.length} found 🌸`;
+    data.signals.forEach((sig, idx) => {
+      signalsList.innerHTML += `
+        <div class="signal-item" style="animation-delay:${idx * 0.08}s">
+          <div class="signal-num">${idx + 1}</div>
+          <div class="signal-content">
+            <div class="signal-text">${sig}</div>
+            <span class="signal-badge ${getBadgeClass(sig)}">${getBadgeLabel(sig)}</span>
+          </div>
+        </div>`;
+    });
+    document.getElementById('account-brief').textContent = data.account_brief;
+    document.getElementById('email-subject').textContent = data.subject || '(No subject)';
+    document.getElementById('email-to').textContent = email;
+    document.getElementById('email-body').textContent = data.generated_email;
+    const badge = document.getElementById('status-badge');
+    const st = data.status;
+    badge.className = 'status-badge ' + st;
+    document.getElementById('status-text').textContent = st === 'sent' ? '💌 Email sent!' : st === 'generated' ? '✨ Generated - not sent' : '😿 Failed';
+    document.getElementById('status-note').textContent = st === 'sent' ? `Delivered to ${email} via SMTP 🎀` : st === 'generated' ? 'SMTP credentials missing. Email was generated successfully~ ✨' : 'Check your GROQ_API_KEY and backend logs 🌸';
+    markAllDone();
+    loadingState.classList.remove('visible');
+    results.classList.add('visible');
+  } catch (err) {
+    const banner = document.getElementById('error-banner');
+    document.getElementById('error-message').textContent = '😿 Error: ' + err.message + ' — Make sure the backend is running at ' + API_URL;
+    banner.style.display = 'flex';
+    loadingState.classList.remove('visible');
+    emptyState.style.display = 'none';
+    pipelineSection.classList.remove('visible');
+    liveChip.style.display = 'none';
+  }
+  launchBtn.disabled = false;
 });
 </script>
 </body>
